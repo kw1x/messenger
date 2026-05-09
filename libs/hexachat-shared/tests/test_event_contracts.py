@@ -24,7 +24,7 @@ from jwt.exceptions import PyJWTError
 
 def _roundtrip[T](event: T) -> T:
     klass = type(event)
-    return klass.model_validate_json(event.to_bytes())  # type: ignore[attr-defined]
+    return klass.model_validate_json(event.to_bytes())  # type: ignore[attr-defined,no-any-return]
 
 
 def test_message_created_roundtrip() -> None:
