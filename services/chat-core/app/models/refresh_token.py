@@ -6,8 +6,8 @@ from uuid import UUID, uuid4
 from sqlalchemy import ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.models.base import Base
 from app.const import REFRESH_TOKEN_HASH_MAX_LENGTH
+from app.models.base import Base
 
 
 class RefreshToken(Base):
