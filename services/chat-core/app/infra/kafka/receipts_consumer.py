@@ -11,8 +11,8 @@ from hexachat_shared.kafka.topics import CHAT_RECEIPTS_V1
 from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
+from app.const import DeliveryStatus
 from app.core.config import CoreSettings
-from app.models.message import DeliveryStatus
 from app.repositories.chat import ChatRepository
 from app.repositories.message import MessageRepository
 

@@ -4,8 +4,9 @@ from uuid import UUID
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.const import ChatKind
 from app.core.exceptions import ChatNotFoundError, NotAChatMemberError
-from app.models.chat import Chat, ChatKind
+from app.models.chat import Chat
 from app.repositories.chat import ChatRepoInterface
 
 
