@@ -41,7 +41,9 @@ revision: ## Create a new Alembic revision: make revision m="add_something"
 lint: ## Run ruff + mypy
 	uv run ruff check .
 	uv run ruff format --check .
-	uv run mypy libs services
+	uv run mypy libs
+	uv run mypy services/chat-core
+	uv run mypy services/presence-gateway
 
 format: ## Auto-format with ruff
 	uv run ruff format .

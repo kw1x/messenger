@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Annotated
+from typing import Annotated, cast
 
 from aiokafka import AIOKafkaProducer
 from fastapi import Cookie, Depends, HTTPException, Request, status
@@ -126,11 +126,11 @@ MessageServiceDep = Annotated[MessageService, Depends(_message_service)]
 
 
 def get_kafka_producer(request: Request) -> AIOKafkaProducer:
-    return request.app.state.kafka_producer  # type: ignore[no-any-return]
+    return cast(AIOKafkaProducer, request.app.state.kafka_producer)
 
 
 def get_outbox_publisher(request: Request) -> OutboxPublisher:
-    return request.app.state.outbox_publisher  # type: ignore[no-any-return]
+    return cast(OutboxPublisher, request.app.state.outbox_publisher)
 
 
 KafkaProducerDep = Annotated[AIOKafkaProducer, Depends(get_kafka_producer)]

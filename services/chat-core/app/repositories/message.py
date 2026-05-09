@@ -7,7 +7,8 @@ from uuid import UUID
 from sqlalchemy import and_, or_, select, tuple_, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.message import DeliveryStatus, Message
+from app.const import DeliveryStatus
+from app.models.message import Message
 
 
 class MessageRepoInterface(Protocol):
