@@ -1,0 +1,81 @@
+[project]
+name = "hexachat"
+version = "0.1.0"
+description = "Distributed messenger built on FastAPI, Kafka, Postgres and Redis"
+requires-python = "~=3.13.0"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.18",
+    "pre-commit>=4.0",
+    "pytest>=8.4",
+    "pytest-asyncio>=0.25",
+    "pytest-cov>=6.0",
+    "ruff>=0.14",
+]
+
+[tool.uv.workspace]
+members = ["libs/hexachat-shared", "services/chat-core", "services/presence-gateway"]
+
+[tool.uv.sources]
+hexachat-shared = { workspace = true }
+
+# ---------------------------------------------------------------------------
+# Tooling shared across every workspace member.
+# ---------------------------------------------------------------------------
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+exclude = ["**/alembic/versions", ".venv", "build", "dist"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint]
+select = [
+    "F",      # pyflakes
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "I",      # isort
+    "Q",      # quotes
+    "TID",    # tidy imports
+    "ANN",    # annotations
+    "FAST",   # fastapi
+    "T20",    # print
+    "B",      # bugbear
+    "SIM",    # simplify
+    "ISC002",
+    "ISC003",
+    "UP",     # pyupgrade
+]
+ignore = [
+    "FAST002", # FastAPI dependency without Annotated — false-positives on Depends()
+    "B008",    # Function calls in argument defaults — Depends() is the whole point
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["ANN", "T20"]
+"**/alembic/env.py" = ["ANN"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+plugins = []
+exclude = [
+    "(^|/)\\.venv/",
+    "(^|/)alembic/versions/",
+    "(^|/)build/",
+]
+
+[[tool.mypy.overrides]]
+module = ["aiokafka", "aiokafka.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = ["-v", "--tb=short", "--strict-markers"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
