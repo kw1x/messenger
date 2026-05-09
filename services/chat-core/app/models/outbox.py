@@ -8,12 +8,12 @@ from sqlalchemy import Index, String, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.models.base import Base
 from app.const import (
     OUTBOX_LAST_ERROR_MAX_LENGTH,
     OUTBOX_PARTITION_KEY_MAX_LENGTH,
     OUTBOX_TOPIC_MAX_LENGTH,
 )
+from app.models.base import Base
 
 
 class OutboxEvent(Base):

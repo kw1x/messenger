@@ -6,8 +6,8 @@ from uuid import UUID, uuid4
 from sqlalchemy import Enum, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.models.base import Base, TimestampMixin
 from app.const import CHAT_TITLE_MAX_LENGTH, ChatKind
+from app.models.base import Base, TimestampMixin
 
 
 class Chat(Base, TimestampMixin):

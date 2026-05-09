@@ -5,8 +5,8 @@ from uuid import UUID, uuid4
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.models.base import Base, TimestampMixin
 from app.const import PASSWORD_HASH_MAX_LENGTH, USERNAME_MAX_LENGTH
+from app.models.base import Base, TimestampMixin
 
 
 class User(Base, TimestampMixin):
