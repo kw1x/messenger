@@ -1,0 +1,13 @@
+.git
+.venv
+**/__pycache__
+**/.mypy_cache
+**/.pytest_cache
+**/.ruff_cache
+docker-compose.override.yml
+.env
+*.md
+docs/
+.github/
+htmlcov/
+.coverage
