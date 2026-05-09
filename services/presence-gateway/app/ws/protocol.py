@@ -25,7 +25,7 @@ class PingMessage(BaseModel):
 
 
 InboundMessage = Annotated[AckMessage | ReadMessage | PingMessage, Field(discriminator="type")]
-inbound_adapter = TypeAdapter(InboundMessage)
+inbound_adapter: TypeAdapter[InboundMessage] = TypeAdapter(InboundMessage)
 
 
 class OutboundEnvelope(BaseModel):

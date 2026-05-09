@@ -14,7 +14,7 @@ async def readyz(request: Request, response: Response) -> dict[str, str]:
     """Liveness vs readiness — readyz fails closed if Redis is unreachable."""
     redis: Redis = request.app.state.redis
     try:
-        await redis.ping()
+        await redis.ping()  # type: ignore[misc]
     except Exception:
         response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
         return {"status": "redis_unavailable"}
